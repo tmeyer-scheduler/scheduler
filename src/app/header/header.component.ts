@@ -8,4 +8,5 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent {
+
 }
