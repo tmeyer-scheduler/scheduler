@@ -16,6 +16,10 @@ export class AppComponent {
 
   img = {url: '', width: 0, height: 0, alt: ''};
 
+  header = {text: '', size: '1em', family: 'Arial', align: 'center', color: 'white'};
+
+  elementType = '';
+
   currentElement: any;
   showRowOptions() {
     this.showToolsRow = !this.showToolsRow;
@@ -83,5 +87,22 @@ export class AppComponent {
     row.replaceChild(newEle, ele);
 
     this.currentElement = newEle;
+  }
+
+  setHeader() {
+    let ele = this.currentElement as HTMLElement;
+    console.log(ele);
+    let row = ele.parentElement as Node;
+    let newEle = document.createElement(`${this.elementType}`);
+    newEle.setAttribute('style', `font-size:${this.header.size};font-family:${this.header.family};
+      color:${this.header.color};text-align:${this.header.align};padding:0.5em`);
+    newEle.innerText = this.header.text;
+    row.replaceChild(newEle, ele);
+
+    this.currentElement = newEle;
+  }
+
+  checkType() {
+    console.log(this.elementType);
   }
 }

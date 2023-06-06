@@ -19,22 +19,64 @@
 </div>
 <div class="newRowOptions" *ngIf="showToolsCol">
         <mat-form-field>
-            <mat-label>Set Image</mat-label>
-            <input matInput placeholder="Image URL" value="" [(ngModel)]="img.url">
+            <mat-label>Set Element Type</mat-label>
+            <select matNativeControl required [(ngModel)]="elementType" name="element-type" (change)="checkType()">
+                <option label="--select something --"></option>
+                <option value="h1">H1 - Primary Header</option>
+                <option value="h2">H2 - Secondary Header</option>
+                <option value="h3">H3 - Tertiary Header</option>
+                <option value="p">P - Paragraph (Text)</option>
+                <option value="img">img - Image</option>
+            </select>
         </mat-form-field>
-        <mat-form-field>
-            <mat-label>Set Height</mat-label>
-            <input matInput placeholder="Image Height" value="" [(ngModel)]="img.height">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Set Width</mat-label>
-            <input matInput placeholder="Image Width" value="" [(ngModel)]="img.width">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Image Text</mat-label>
-            <input matInput placeholder="Image Text" value="" [(ngModel)]="img.alt">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="setImage()">Set Image</button>
+        <ng-container *ngIf="(elementType == 'h1') || (elementType == 'h2') || (elementType == 'h3')">
+            <mat-form-field>
+                <mat-label>Enter Text</mat-label>
+                <input matInput placeholder="Header Text" value="" [(ngModel)]="header.text">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Font Size</mat-label>
+                <input matInput placeholder="Header Size" value="" [(ngModel)]="header.size">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Font Family</mat-label>
+                <input matInput placeholder="Header Family" value="" [(ngModel)]="header.family">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Font Color</mat-label>
+                <input matInput placeholder="Header Color" value="" [(ngModel)]="header.color">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Align Text</mat-label>
+                <select matNativeControl required [(ngModel)]="header.align" name="element-type">
+                    <option label="--select something --"></option>
+                    <option value="left">Left</option>
+                    <option value="center">Center</option>
+                    <option value="right">Right</option>
+                </select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="setHeader()">Add Header</button>
+        </ng-container>
+        <ng-container *ngIf="elementType === 'img'">
+            <mat-form-field>
+                <mat-label>Set Image</mat-label>
+                <input matInput placeholder="Image URL" value="" [(ngModel)]="img.url">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Set Height</mat-label>
+                <input matInput placeholder="Image Height" value="" [(ngModel)]="img.height">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Set Width</mat-label>
+                <input matInput placeholder="Image Width" value="" [(ngModel)]="img.width">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Image Text</mat-label>
+                <input matInput placeholder="Image Text" value="" [(ngModel)]="img.alt">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="setImage()">Set Image</button>
+        </ng-container>
+
         <button mat-raised-button color="primary" (click)="align('left')">Align Left</button>
         <button mat-raised-button color="primary" (click)="align('right')">Align Right</button>
         <button mat-raised-button color="warn" (click)="deleteCol()">Delete Column!</button>
