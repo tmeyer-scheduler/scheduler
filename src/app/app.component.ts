@@ -18,6 +18,12 @@ export class AppComponent {
 
   header = {text: '', size: '1em', family: 'Arial', align: 'center', color: 'white'};
 
+  p = {text: '', size: '1em', family: 'Arial', align: 'left', color: 'white'};
+
+  italics = '';
+
+  bold = '';
+
   elementType = '';
 
   currentElement: any;
@@ -102,7 +108,32 @@ export class AppComponent {
     this.currentElement = newEle;
   }
 
+  addText() {
+    let ele = this.currentElement as HTMLElement;
+    let row = ele.parentElement as Node;
+    let newEle = document.createElement(`${this.elementType}`);
+    newEle.innerHTML = this.p.text;
+    newEle.classList.add(ele.classList[0]);
+    row.replaceChild(newEle, ele);
+
+    this.currentElement = newEle;
+  }
+
   checkType() {
     console.log(this.elementType);
+  }
+
+  addItalics() {
+    this.p.text += `<i>${this.italics}</i>`;
+    this.italics = '';
+  }
+
+  addBold() {
+    this.p.text += `<b>${this.bold}</b>`;
+    this.bold = '';
+  }
+
+  addLineBreak() {
+    this.p.text += `<br>`
   }
 }
