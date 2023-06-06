@@ -4,7 +4,6 @@
     Click To Add Row
 </div>
 <div class="newRowOptions" *ngIf="showToolsRow">
-    <form>
         <mat-form-field>
             <mat-label>Number of Columns</mat-label>
             <select matNativeControl required [(ngModel)]="newRow.columns" name="columns">
@@ -17,7 +16,13 @@
         </mat-form-field>
         <button mat-raised-button color="primary" [disabled]="newRow.columns === 0"
             (click)="addRow()"> Go!</button>
-    </form>
+</div>
+<div class="newRowOptions" *ngIf="showToolsCol">
+        <button mat-raised-button color="primary" (click)="alignLeft()">Align Left</button>
+        <button mat-raised-button color="primary" (click)="alignRight()">Align Right</button>
+        <button mat-raised-button color="warn" (click)="deleteCol()">Delete Column!</button>
+        <button mat-raised-button color="warn" (click)="deleteRow()">Delete Row!</button>
+        <button mat-raised-button color="primary" (click)="closeToolsCol()">Close Options</button>
 </div>
 <div class="body" id="body">
 
