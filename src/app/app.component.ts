@@ -39,10 +39,10 @@ export class AppComponent {
         for (let i = 0; i < this.newRow.columns; i++) {
           
           let newCol = document.createElement('div');
-          let $ = this;
           newRow.appendChild(newCol);
           newCol.textContent = "Click to Edit";
           newCol.classList.add(`col-${this.newRow.columns}`, `newEle`);
+          let $ = this;
           newCol.addEventListener('click', function() {
             $.currentElement = this;
             $.showToolsCol = true;
@@ -53,6 +53,13 @@ export class AppComponent {
     this.showRowOptions();
   }
 
+  attachEventListener(ele: HTMLElement) {
+    let $ = this;
+    ele.addEventListener('click', function() {
+      $.showToolsCol = true;
+    })
+    $.showToolsCol = false;
+  }
   deleteRow() {
     let ele = this.currentElement as HTMLElement;
     let row = ele.parentElement as Node;
@@ -92,6 +99,7 @@ export class AppComponent {
     newEle.setAttribute('alt', `${this.img.alt}`);
     row.replaceChild(newEle, ele);
 
+    this.attachEventListener(newEle);
     this.currentElement = newEle;
   }
 
@@ -105,6 +113,7 @@ export class AppComponent {
     newEle.innerText = this.header.text;
     row.replaceChild(newEle, ele);
 
+    this.attachEventListener(newEle);
     this.currentElement = newEle;
   }
 
@@ -116,6 +125,7 @@ export class AppComponent {
     newEle.classList.add(ele.classList[0]);
     row.replaceChild(newEle, ele);
 
+    this.attachEventListener(newEle);
     this.currentElement = newEle;
   }
 
