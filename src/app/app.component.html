@@ -18,8 +18,25 @@
             (click)="addRow()"> Go!</button>
 </div>
 <div class="newRowOptions" *ngIf="showToolsCol">
-        <button mat-raised-button color="primary" (click)="alignLeft()">Align Left</button>
-        <button mat-raised-button color="primary" (click)="alignRight()">Align Right</button>
+        <mat-form-field>
+            <mat-label>Set Image</mat-label>
+            <input matInput placeholder="Image URL" value="" [(ngModel)]="img.url">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Set Height</mat-label>
+            <input matInput placeholder="Image Height" value="" [(ngModel)]="img.height">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Set Width</mat-label>
+            <input matInput placeholder="Image Width" value="" [(ngModel)]="img.width">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Image Text</mat-label>
+            <input matInput placeholder="Image Text" value="" [(ngModel)]="img.alt">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="setImage()">Set Image</button>
+        <button mat-raised-button color="primary" (click)="align('left')">Align Left</button>
+        <button mat-raised-button color="primary" (click)="align('right')">Align Right</button>
         <button mat-raised-button color="warn" (click)="deleteCol()">Delete Column!</button>
         <button mat-raised-button color="warn" (click)="deleteRow()">Delete Row!</button>
         <button mat-raised-button color="primary" (click)="closeToolsCol()">Close Options</button>

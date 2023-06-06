@@ -9,7 +9,12 @@ export class AppComponent {
   title = 'tmeyer-scheduler.github.io';
   showToolsRow = false;
   showToolsCol = false;
+
   newRow = {columns: 0, height: 0, width: 100, bgcolor: 'green' };
+
+  col = {imgUrl: ''};
+
+  img = {url: '', width: 0, height: 0, alt: ''};
 
   currentElement: any;
   showRowOptions() {
@@ -55,11 +60,28 @@ export class AppComponent {
     this.showToolsCol = false;
   }
 
-  alignLeft() {
-
+  align(dir: string) {
+    let ele = this.currentElement as Node;
+    let arr = ele.parentElement?.children;
+    if (arr) {
+       let ar = Array.from(arr);
+       ar.map(x => {
+        x.setAttribute('style', `float: ${dir}`);
+       });
+    }
   }
 
-  alignRight() {
-    
+  setImage() {
+    let ele = this.currentElement as HTMLElement;
+    let row = ele.parentElement as Node;
+    let newEle = document.createElement('img');
+    newEle.setAttribute('style', `float: left`);
+    newEle.setAttribute('src', this.img.url);
+    newEle.setAttribute('height', `${this.img.height}px`);
+    newEle.setAttribute('width', `${this.img.width}px`);
+    newEle.setAttribute('alt', `${this.img.alt}`);
+    row.replaceChild(newEle, ele);
+
+    this.currentElement = newEle;
   }
 }
