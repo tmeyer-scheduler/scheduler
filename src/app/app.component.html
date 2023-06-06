@@ -1,2 +1,24 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<!-- <app-header></app-header>
+<router-outlet></router-outlet> -->
+<div class="toolbar" (click)="showRowOptions()">
+    Click To Add Row
+</div>
+<div class="newRowOptions" *ngIf="showToolsRow">
+    <form>
+        <mat-form-field>
+            <mat-label>Number of Columns</mat-label>
+            <select matNativeControl required [(ngModel)]="newRow.columns" name="columns">
+                <option label="--select something --"></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="newRow.columns === 0"
+            (click)="addRow()"> Go!</button>
+    </form>
+</div>
+<div class="body" id="body">
+
+</div>
